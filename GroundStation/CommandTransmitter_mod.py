@@ -33,6 +33,8 @@ import sip
 import sys
 from gnuradio import qtgui
 
+import amp_controller	#Controlls arduino
+
 
 class CommandTransmitter_v2(gr.top_block, Qt.QWidget):
 
@@ -150,8 +152,8 @@ class CommandTransmitter_v2(gr.top_block, Qt.QWidget):
         self.blocks_throttle_0_1 = blocks.throttle(gr.sizeof_gr_complex*1, file_rate,True)
         self.blocks_throttle_0_0 = blocks.throttle(gr.sizeof_gr_complex*1, file_rate,True)
         self.blocks_throttle_0 = blocks.throttle(gr.sizeof_gr_complex*1, file_rate,True)
-        self.blocks_file_source_0_1 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command3.iq', True)
-        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command2.iq', True)
+        self.blocks_file_source_0_1 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command3.iq', False)
+        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command2.iq', False)
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command1.iq', False)
         self.blks2_selector_1 = grc_blks2.selector(
         	item_size=gr.sizeof_gr_complex*1,
@@ -224,22 +226,37 @@ class CommandTransmitter_v2(gr.top_block, Qt.QWidget):
 
     def set_TX_Command_3(self, TX_Command_3):
         self.TX_Command_3 = TX_Command_3
+	self.blocks_file_source_0_1.seek(long(0),int(0))
 	self.set_command_select(TX_Command_3)
+	if TX_Command_3 == 0:		#If transmit button released
+		amp_controller.rx()	#Switch radio to receive
+	else:
+		amp_controller.tx()	#Switch Radio to transmit
 
     def get_TX_Command_2(self):
         return self.TX_Command_2
 
     def set_TX_Command_2(self, TX_Command_2):
         self.TX_Command_2 = TX_Command_2
+	self.blocks_file_source_0_0.seek(long(0),int(0))
 	self.set_command_select(TX_Command_2)
+	if TX_Command_2 == 0:		#If transmit button released
+		amp_controller.rx()	#Switch radio to receive
+	else:
+		amp_controller.tx()	#Switch Radio to transmit
 
     def get_TX_Command_1(self):
         return self.TX_Command_1
 
     def set_TX_Command_1(self, TX_Command_1):
         self.TX_Command_1 = TX_Command_1
+	self.set_command_select(TX_Command_1)
 	self.blocks_file_source_0.seek(long(0),int(0))
-	self.set_command_select(TX_Command_1)	
+	if TX_Command_1 == 0:		#If transmit button released
+		amp_controller.rx()	#Switch radio to receive
+	else:
+		amp_controller.tx()	#Switch Radio to transmit
+			
 
 
 def main(top_block_cls=CommandTransmitter_v2, options=None):
