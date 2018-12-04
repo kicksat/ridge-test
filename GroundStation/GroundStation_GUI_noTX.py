@@ -254,8 +254,10 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_tx_button_5(self, tx_button_5):
         self.tx_button_5 = tx_button_5
 	if tx_button_5 == 1:
+		amp_controller.tx()
 		self.Command_TX_4.blocks_file_source_4.seek(long(0),int(0))
 		self.Command_TX_4.run()
+		amp_controller.rx()
 
     def get_tx_button_4(self):
         return self.tx_button_4
@@ -263,8 +265,10 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_tx_button_4(self, tx_button_4):
         self.tx_button_4 = tx_button_4
 	if tx_button_4 == 1:
+		amp_controller.tx()
 		self.Command_TX_3.blocks_file_source_3.seek(long(0),int(0))
 		self.Command_TX_3.run()
+		amp_controller.rx()
 
     def get_tx_button_3(self):
         return self.tx_button_3
@@ -272,8 +276,10 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_tx_button_3(self, tx_button_3):
         self.tx_button_3 = tx_button_3
 	if tx_button_3 == 1:
+		amp_controller.tx()
 		self.Command_TX_2.blocks_file_source_2.seek(long(0),int(0))
 		self.Command_TX_2.run()
+		amp_controller.rx()
 
     def get_tx_button_2(self):
         return self.tx_button_2
