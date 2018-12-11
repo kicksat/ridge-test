@@ -114,11 +114,15 @@ void setup()
 unsigned int n = 1;
 void loop()
 {
-  SerialUSB.println("Transmitting...");
-  radio.send((const uint8_t*)"FireAntenna", 11);
-  radio.waitPacketSent(2000);
+//  SerialUSB.println("Transmitting...");
+//  radio.setModemRegisters(&FSK1k2);
+//  radio.setTxPower(RH_RF22_RF23BP_TXPOW_30DBM);
+//  radio.send(packet, 95);
+//  radio.waitPacketSent(2000);
+//  radio.setModeIdle();
 
 SerialUSB.println("Listening...");
+radio.setModemConfig(radio.FSK_Rb_512Fd2_5);
 if (radio.waitAvailableTimeout(15000))
   { 
     // Should be a reply message for us now   
