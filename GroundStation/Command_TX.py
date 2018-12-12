@@ -3,18 +3,20 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Command Tx
-# Generated: Mon Dec  3 23:47:17 2018
+# Generated: Tue Dec 11 12:26:20 2018
 ##################################################
 
 
-from gnuradio import audio
 from gnuradio import blocks
 from gnuradio import eng_notation
+from gnuradio import filter
 from gnuradio import gr
 from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from grc_gnuradio import blks2 as grc_blks2
 from optparse import OptionParser
+import osmosdr
+import time
 
 
 class Command_TX(gr.top_block):
@@ -37,12 +39,27 @@ class Command_TX(gr.top_block):
         ##################################################
         # Blocks
         ##################################################
+        self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
+                interpolation=int(tx_rate),
+                decimation=int(file_rate),
+                taps=None,
+                fractional_bw=None,
+        )
+        self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + "soapy=0,driver=hackrf" )
+        self.osmosdr_sink_0.set_sample_rate(tx_rate)
+        self.osmosdr_sink_0.set_center_freq(433.150e6, 0)
+        self.osmosdr_sink_0.set_freq_corr(0, 0)
+        self.osmosdr_sink_0.set_gain(10, 0)
+        self.osmosdr_sink_0.set_if_gain(1, 0)
+        self.osmosdr_sink_0.set_bb_gain(20, 0)
+        self.osmosdr_sink_0.set_antenna('', 0)
+        self.osmosdr_sink_0.set_bandwidth(0, 0)
+
         self.blocks_file_source_4 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command5.iq', False)
         self.blocks_file_source_3 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command4.iq', False)
         self.blocks_file_source_2 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command3.iq', False)
         self.blocks_file_source_1 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command2.iq', False)
         self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/Commands/command1.iq', False)
-        self.blocks_complex_to_float_0 = blocks.complex_to_float(1)
         self.blks2_selector_1 = grc_blks2.selector(
         	item_size=gr.sizeof_gr_complex*1,
         	num_inputs=5,
@@ -50,18 +67,17 @@ class Command_TX(gr.top_block):
         	input_index=command_select,
         	output_index=0,
         )
-        self.audio_sink_0 = audio.sink(int(file_rate), '', True)
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blks2_selector_1, 0), (self.blocks_complex_to_float_0, 0))
-        self.connect((self.blocks_complex_to_float_0, 0), (self.audio_sink_0, 0))
+        self.connect((self.blks2_selector_1, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.blocks_file_source_0, 0), (self.blks2_selector_1, 0))
         self.connect((self.blocks_file_source_1, 0), (self.blks2_selector_1, 1))
         self.connect((self.blocks_file_source_2, 0), (self.blks2_selector_1, 2))
         self.connect((self.blocks_file_source_3, 0), (self.blks2_selector_1, 3))
         self.connect((self.blocks_file_source_4, 0), (self.blks2_selector_1, 4))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.osmosdr_sink_0, 0))
 
     def get_command_select(self):
         return self.command_select
@@ -75,6 +91,7 @@ class Command_TX(gr.top_block):
 
     def set_tx_rate(self, tx_rate):
         self.tx_rate = tx_rate
+        self.osmosdr_sink_0.set_sample_rate(self.tx_rate)
 
     def get_freq(self):
         return self.freq
