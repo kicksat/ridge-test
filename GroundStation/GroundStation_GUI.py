@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Groundstation Gui
-# Generated: Wed Dec 12 13:44:59 2018
+# Generated: Sun Dec 16 12:05:31 2018
 ##################################################
 
 from distutils.version import StrictVersion
@@ -26,7 +26,6 @@ from PyQt5 import Qt
 from PyQt5 import Qt, QtCore
 from TX_Commands import TX_Commands  # grc-generated hier_block
 from gnuradio import analog
-from gnuradio import audio
 from gnuradio import blocks
 from gnuradio import eng_notation
 from gnuradio import filter
@@ -82,24 +81,25 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.tx_button_3 = tx_button_3 = 0
         self.tx_button_2 = tx_button_2 = 0
         self.tx_button_1 = tx_button_1 = 0
-        self.samp_rate = samp_rate = 2e6
+        self.samp_rate = samp_rate = 160e3
         self.data_rate = data_rate = 1200
         self.command_selection = command_selection = (tx_button_1+tx_button_2+tx_button_3+tx_button_4+tx_button_5)
-        self.channel_spacing = channel_spacing = 200e3
+        self.channel_spacing = channel_spacing = 20e3
         self.tx_rf_gain = tx_rf_gain = 14
         self.tx_rate = tx_rate = 2e6
         self.tx_if_gain = tx_if_gain = 47
         self.samp_per_sym = samp_per_sym = (samp_rate/data_rate)
+        self.rx_samp_rate = rx_samp_rate = 4.8e6
         self.rx_rf_gain = rx_rf_gain = 14
         self.rx_if_gain = rx_if_gain = 24
         self.rx_bb_gain = rx_bb_gain = 20
         self.record_switch = record_switch = 0
-        self.fsk_deviation_hz = fsk_deviation_hz = 32e3
-        self.freq_offset = freq_offset = (channel_spacing/2)+(channel_spacing*0.10)
+        self.fsk_deviation_hz = fsk_deviation_hz = 6e3
+        self.freq_offset = freq_offset = 30e3
         self.freq_0 = freq_0 = 433.5e6
-        self.freq = freq = 315e6
+        self.freq = freq = 437.505e6
         self.file_rate = file_rate = 160e3
-        self.channel_trans = channel_trans = (channel_spacing*0.4)
+        self.channel_trans = channel_trans = (channel_spacing*0.6)
         self.TxRxSwitch = TxRxSwitch = int(command_selection>0)
 
         ##################################################
@@ -194,6 +194,12 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         [self.top_grid_layout.setRowStretch(r,1) for r in range(8,9)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
         self.record = blocks.multiply_const_vcc((record_switch, ))
+        self.rational_resampler_xxx_1 = filter.rational_resampler_ccc(
+                interpolation=int(samp_rate),
+                decimation=int(rx_samp_rate),
+                taps=None,
+                fractional_bw=None,
+        )
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=int(tx_rate),
                 decimation=int(file_rate),
@@ -295,7 +301,7 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         	1024, #size
         	firdes.WIN_BLACKMAN_hARRIS, #wintype
         	freq+freq_offset, #fc
-        	samp_rate, #bw
+        	rx_samp_rate, #bw
         	"", #name
         	1 #number of inputs
         )
@@ -349,7 +355,7 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
         self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + "soapy=0,driver=hackrf" )
         self.osmosdr_sink_0.set_sample_rate(tx_rate)
-        self.osmosdr_sink_0.set_center_freq(433.150e6, 0)
+        self.osmosdr_sink_0.set_center_freq(freq+freq_offset, 0)
         self.osmosdr_sink_0.set_freq_corr(0, 0)
         self.osmosdr_sink_0.set_gain(10, 0)
         self.osmosdr_sink_0.set_if_gain(1, 0)
@@ -357,11 +363,9 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.osmosdr_sink_0.set_antenna('', 0)
         self.osmosdr_sink_0.set_bandwidth(0, 0)
 
-        self.freq_xlating_fir_filter_xxx_0 = filter.freq_xlating_fir_filter_ccc(1, (firdes.low_pass(1,  samp_rate, channel_spacing, channel_trans, firdes.WIN_BLACKMAN, 6.76)), -freq_offset, samp_rate)
         self.dc_blocker_xx_0 = filter.dc_blocker_cc(32, True)
         self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/GroundStation/Recordings/raw.dat', False)
         self.blocks_file_sink_1.set_unbuffered(False)
-        self.blocks_complex_to_float_0 = blocks.complex_to_float(1)
         self.blks2_selector_0 = grc_blks2.selector(
         	item_size=gr.sizeof_gr_complex*1,
         	num_inputs=2,
@@ -369,7 +373,6 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         	input_index=TxRxSwitch,
         	output_index=TxRxSwitch,
         )
-        self.audio_sink_0 = audio.sink(int(file_rate), '', True)
         self.analog_quadrature_demod_cf_0 = analog.quadrature_demod_cf(samp_rate/(2*math.pi*fsk_deviation_hz/8.0))
         self.analog_pwr_squelch_xx_0 = analog.pwr_squelch_cc(-200, 1e-4, 0, True)
         self.TX_Commands_0 = TX_Commands(
@@ -379,20 +382,18 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.TX_Commands_0, 0), (self.blocks_complex_to_float_0, 0))
         self.connect((self.TX_Commands_0, 0), (self.rational_resampler_xxx_0, 0))
         self.connect((self.analog_pwr_squelch_xx_0, 0), (self.blocks_file_sink_1, 0))
         self.connect((self.analog_quadrature_demod_cf_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blks2_selector_0, 0), (self.dc_blocker_xx_0, 0))
         self.connect((self.blks2_selector_0, 1), (self.osmosdr_sink_0, 0))
         self.connect((self.blks2_selector_0, 0), (self.record, 0))
-        self.connect((self.blocks_complex_to_float_0, 0), (self.audio_sink_0, 0))
-        self.connect((self.dc_blocker_xx_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
         self.connect((self.dc_blocker_xx_0, 0), (self.qtgui_freq_sink_x_0, 0))
-        self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.analog_quadrature_demod_cf_0, 0))
-        self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
+        self.connect((self.dc_blocker_xx_0, 0), (self.rational_resampler_xxx_1, 0))
         self.connect((self.osmosdr_source_0, 0), (self.blks2_selector_0, 0))
         self.connect((self.rational_resampler_xxx_0, 0), (self.blks2_selector_0, 1))
+        self.connect((self.rational_resampler_xxx_1, 0), (self.analog_quadrature_demod_cf_0, 0))
+        self.connect((self.rational_resampler_xxx_1, 0), (self.qtgui_freq_sink_x_0_0, 0))
         self.connect((self.record, 0), (self.analog_pwr_squelch_xx_0, 0))
 
     def closeEvent(self, event):
@@ -443,9 +444,7 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.set_samp_per_sym((self.samp_rate/self.data_rate))
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
         self.qtgui_freq_sink_x_0_0.set_frequency_range(self.freq, self.samp_rate)
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.samp_rate)
         self.osmosdr_source_0.set_sample_rate(self.samp_rate)
-        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1,  self.samp_rate, self.channel_spacing, self.channel_trans, firdes.WIN_BLACKMAN, 6.76)))
         self.analog_quadrature_demod_cf_0.set_gain(self.samp_rate/(2*math.pi*self.fsk_deviation_hz/8.0))
 
     def get_data_rate(self):
@@ -468,9 +467,7 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
     def set_channel_spacing(self, channel_spacing):
         self.channel_spacing = channel_spacing
-        self.set_freq_offset((self.channel_spacing/2)+(self.channel_spacing*0.10))
-        self.set_channel_trans((self.channel_spacing*0.4))
-        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1,  self.samp_rate, self.channel_spacing, self.channel_trans, firdes.WIN_BLACKMAN, 6.76)))
+        self.set_channel_trans((self.channel_spacing*0.6))
 
     def get_tx_rf_gain(self):
         return self.tx_rf_gain
@@ -496,6 +493,13 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
     def set_samp_per_sym(self, samp_per_sym):
         self.samp_per_sym = samp_per_sym
+
+    def get_rx_samp_rate(self):
+        return self.rx_samp_rate
+
+    def set_rx_samp_rate(self, rx_samp_rate):
+        self.rx_samp_rate = rx_samp_rate
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.rx_samp_rate)
 
     def get_rx_rf_gain(self):
         return self.rx_rf_gain
@@ -538,9 +542,9 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
     def set_freq_offset(self, freq_offset):
         self.freq_offset = freq_offset
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.samp_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.rx_samp_rate)
         self.osmosdr_source_0.set_center_freq(self.freq+self.freq_offset, 0)
-        self.freq_xlating_fir_filter_xxx_0.set_center_freq(-self.freq_offset)
+        self.osmosdr_sink_0.set_center_freq(self.freq+self.freq_offset, 0)
 
     def get_freq_0(self):
         return self.freq_0
@@ -554,8 +558,9 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_freq(self, freq):
         self.freq = freq
         self.qtgui_freq_sink_x_0_0.set_frequency_range(self.freq, self.samp_rate)
-        self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.samp_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.rx_samp_rate)
         self.osmosdr_source_0.set_center_freq(self.freq+self.freq_offset, 0)
+        self.osmosdr_sink_0.set_center_freq(self.freq+self.freq_offset, 0)
 
     def get_file_rate(self):
         return self.file_rate
@@ -568,7 +573,6 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
     def set_channel_trans(self, channel_trans):
         self.channel_trans = channel_trans
-        self.freq_xlating_fir_filter_xxx_0.set_taps((firdes.low_pass(1,  self.samp_rate, self.channel_spacing, self.channel_trans, firdes.WIN_BLACKMAN, 6.76)))
 
     def get_TxRxSwitch(self):
         return self.TxRxSwitch
