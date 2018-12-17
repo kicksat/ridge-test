@@ -40,8 +40,6 @@ import threading
 import time
 from gnuradio import qtgui
 
-import amp_controller	#Controls Arduino Amp Controller
-
 
 class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
@@ -603,10 +601,6 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.TxRxSwitch = TxRxSwitch
         self.blks2_selector_0.set_input_index(int(self.TxRxSwitch))
         self.blks2_selector_0.set_output_index(int(self.TxRxSwitch))
-	if TxRxSwitch == 1:
-		amp_controller.tx()
-	else:
-		amp_controller.rx()
 
 
 def main(top_block_cls=GroundStation_GUI, options=None):

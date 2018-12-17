@@ -265,7 +265,7 @@
     </param>
     <param>
       <key>labels</key>
-      <value>['PingACK!','ArmBW123','FireBW01','FireBW02','FireBW03','FireBW09','SenMode1','SenMode2','SenMode3','SenMode4','SenMode5','RadMode1','RadMode2','RadMode3','SendACC1','SendACC2','SendACC3','Reset!!!']</value>
+      <value>['PingACK!','ArmBW123','FireBW01','FireBW02','FireBW03','FireBW09','SenMode1','SenMode2','SenMode3','SenMode4','SenMode5','RadMode1','RadMode2','RadMode3','SendACC1','SendACC2','SendACC3','RESET!!!']</value>
     </param>
     <param>
       <key>num_opts</key>
@@ -293,7 +293,7 @@
     </param>
     <param>
       <key>options</key>
-      <value>['/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/PingACK!_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/ArmBW123_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW01_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW02_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW03_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW09_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode4_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode5_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/Reset!!!_160ksps_437505kHz_30kOffset_3s.iq']</value>
+      <value>['/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/PingACK!_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/ArmBW123_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW01_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW02_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW03_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW09_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode4_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode5_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RESET!!!_160ksps_437505kHz_30kOffset_3s.iq']</value>
     </param>
     <param>
       <key>orient</key>
@@ -1157,7 +1157,7 @@
     </param>
     <param>
       <key>gate</key>
-      <value>True</value>
+      <value>False</value>
     </param>
     <param>
       <key>id</key>
