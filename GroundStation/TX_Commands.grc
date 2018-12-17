@@ -125,7 +125,7 @@
     </param>
     <param>
       <key>num_inputs</key>
-      <value>6</value>
+      <value>11</value>
     </param>
     <param>
       <key>num_outputs</key>
@@ -164,7 +164,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/trimmed_PingACK!_160ksps_437505kHz_30kOffset_filtered.iq</value>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/PingACK!_160ksps_437505kHz_30kOffset_3s.iq</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -219,7 +219,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/tane/Documents/RExLab/ridge-test/Commands/command2.iq</value>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/ArmBW123_160ksps_437505kHz_30kOffset_3s.iq</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -274,7 +274,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/tane/Documents/RExLab/ridge-test/Commands/command3.iq</value>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW01_160ksps_437505kHz_30kOffset_3s.iq</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -302,7 +302,7 @@
     </param>
     <param>
       <key>repeat</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>vlen</key>
@@ -329,7 +329,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/tane/Documents/RExLab/ridge-test/Commands/command4.iq</value>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW02_160ksps_437505kHz_30kOffset_3s.iq</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -357,7 +357,7 @@
     </param>
     <param>
       <key>repeat</key>
-      <value>False</value>
+      <value>True</value>
     </param>
     <param>
       <key>vlen</key>
@@ -384,7 +384,7 @@
     </param>
     <param>
       <key>file</key>
-      <value>/home/tane/Documents/RExLab/ridge-test/Commands/command5.iq</value>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW03_160ksps_437505kHz_30kOffset_3s.iq</value>
     </param>
     <param>
       <key>_coordinate</key>
@@ -412,7 +412,282 @@
     </param>
     <param>
       <key>repeat</key>
-      <value>False</value>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW09_160ksps_437505kHz_30kOffset_3s.iq</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(72, 532)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_5</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode1_160ksps_437505kHz_30kOffset_3s.iq</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(72, 596)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_6</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode2_160ksps_437505kHz_30kOffset_3s.iq</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(72, 668)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_7</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode3_160ksps_437505kHz_30kOffset_3s.iq</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(72, 740)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_8</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>vlen</key>
+      <value>1</value>
+    </param>
+  </block>
+  <block>
+    <key>blocks_file_source</key>
+    <param>
+      <key>alias</key>
+      <value></value>
+    </param>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>affinity</key>
+      <value></value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>file</key>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode4_160ksps_437505kHz_30kOffset_3s.iq</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(72, 804)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>blocks_file_source_9</value>
+    </param>
+    <param>
+      <key>maxoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>minoutbuf</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>complex</value>
+    </param>
+    <param>
+      <key>repeat</key>
+      <value>True</value>
     </param>
     <param>
       <key>vlen</key>
@@ -595,6 +870,36 @@
     <sink_block_id>blks2_selector_1</sink_block_id>
     <source_key>0</source_key>
     <sink_key>5</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_5</source_block_id>
+    <sink_block_id>blks2_selector_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>6</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_6</source_block_id>
+    <sink_block_id>blks2_selector_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>7</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_7</source_block_id>
+    <sink_block_id>blks2_selector_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>8</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_8</source_block_id>
+    <sink_block_id>blks2_selector_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>9</sink_key>
+  </connection>
+  <connection>
+    <source_block_id>blocks_file_source_9</source_block_id>
+    <sink_block_id>blks2_selector_1</sink_block_id>
+    <source_key>0</source_key>
+    <sink_key>10</sink_key>
   </connection>
   <connection>
     <source_block_id>blocks_null_source_0</source_block_id>

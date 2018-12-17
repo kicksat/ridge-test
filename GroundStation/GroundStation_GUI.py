@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Groundstation Gui
-# Generated: Sun Dec 16 12:05:31 2018
+# Generated: Sun Dec 16 23:34:26 2018
 ##################################################
 
 from distutils.version import StrictVersion
@@ -76,18 +76,31 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
+        self.tx_button_9 = tx_button_9 = 0
+        self.tx_button_8 = tx_button_8 = 0
+        self.tx_button_7 = tx_button_7 = 0
+        self.tx_button_6 = tx_button_6 = 0
         self.tx_button_5 = tx_button_5 = 0
         self.tx_button_4 = tx_button_4 = 0
         self.tx_button_3 = tx_button_3 = 0
         self.tx_button_2 = tx_button_2 = 0
+        self.tx_button_11 = tx_button_11 = 0
+        self.tx_button_10 = tx_button_10 = 0
         self.tx_button_1 = tx_button_1 = 0
         self.samp_rate = samp_rate = 160e3
         self.data_rate = data_rate = 1200
-        self.command_selection = command_selection = (tx_button_1+tx_button_2+tx_button_3+tx_button_4+tx_button_5)
+        self.command_selection = command_selection = (tx_button_1+tx_button_2+tx_button_3+tx_button_4+tx_button_5+tx_button_6+tx_button_7+tx_button_8+tx_button_9+tx_button_10+tx_button_11)
         self.channel_spacing = channel_spacing = 20e3
-        self.tx_rf_gain = tx_rf_gain = 14
-        self.tx_rate = tx_rate = 2e6
+        self.tx_rf_gain = tx_rf_gain = 0
+        self.tx_rate = tx_rate = 4.8e6
         self.tx_if_gain = tx_if_gain = 47
+        self.tx_button_18 = tx_button_18 = 0
+        self.tx_button_17 = tx_button_17 = 0
+        self.tx_button_16 = tx_button_16 = 0
+        self.tx_button_15 = tx_button_15 = 0
+        self.tx_button_14 = tx_button_14 = 0
+        self.tx_button_13 = tx_button_13 = 0
+        self.tx_button_12 = tx_button_12 = 0
         self.samp_per_sym = samp_per_sym = (samp_rate/data_rate)
         self.rx_samp_rate = rx_samp_rate = 4.8e6
         self.rx_rf_gain = rx_rf_gain = 14
@@ -121,63 +134,154 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.sig_tabs_grid_layout_2 = Qt.QGridLayout()
         self.sig_tabs_layout_2.addLayout(self.sig_tabs_grid_layout_2)
         self.sig_tabs.addTab(self.sig_tabs_widget_2, 'Demodulated')
-        self.top_grid_layout.addWidget(self.sig_tabs, 0, 1, 5, 5)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(0,5)]
+        self.top_grid_layout.addWidget(self.sig_tabs, 0, 1, 10, 5)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(0,10)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(1,6)]
         self._rx_rf_gain_range = Range(0, 14, 14, 14, 200)
         self._rx_rf_gain_win = RangeWidget(self._rx_rf_gain_range, self.set_rx_rf_gain, "rx_rf_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_rf_gain_win, 6, 3, 1, 3)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(6,7)]
+        self.top_grid_layout.addWidget(self._rx_rf_gain_win, 11, 3, 3, 3)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(11,14)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
         self._rx_if_gain_range = Range(0, 40, 8, 24, 200)
         self._rx_if_gain_win = RangeWidget(self._rx_if_gain_range, self.set_rx_if_gain, "rx_if_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_if_gain_win, 7, 3, 1, 3)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(7,8)]
+        self.top_grid_layout.addWidget(self._rx_if_gain_win, 14, 3, 3, 3)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(14,17)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
         self._rx_bb_gain_range = Range(0, 62, 2, 20, 200)
         self._rx_bb_gain_win = RangeWidget(self._rx_bb_gain_range, self.set_rx_bb_gain, "rx_bb_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_bb_gain_win, 8, 3, 1, 3)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(8,9)]
+        self.top_grid_layout.addWidget(self._rx_bb_gain_win, 17, 3, 1, 3)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(17,18)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
-        self._tx_rf_gain_range = Range(0, 14, 14, 14, 200)
+        self._tx_rf_gain_range = Range(0, 14, 14, 0, 200)
         self._tx_rf_gain_win = RangeWidget(self._tx_rf_gain_range, self.set_tx_rf_gain, "tx_rf_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._tx_rf_gain_win, 6, 0, 1, 3)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(6,7)]
-        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,3)]
+        self.top_grid_layout.addWidget(self._tx_rf_gain_win, 11, 1, 3, 2)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(11,14)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(1,3)]
         self._tx_if_gain_range = Range(0, 47, 1, 47, 200)
         self._tx_if_gain_win = RangeWidget(self._tx_if_gain_range, self.set_tx_if_gain, "tx_if_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._tx_if_gain_win, 7, 0, 1, 3)
+        self.top_grid_layout.addWidget(self._tx_if_gain_win, 14, 1, 3, 2)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(14,17)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(1,3)]
+        _tx_button_9_push_button = Qt.QPushButton("SenMode3")
+        self._tx_button_9_choices = {'Pressed': 9, 'Released': 0}
+        _tx_button_9_push_button.pressed.connect(lambda: self.set_tx_button_9(self._tx_button_9_choices['Pressed']))
+        _tx_button_9_push_button.released.connect(lambda: self.set_tx_button_9(self._tx_button_9_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_9_push_button, 8, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(8,9)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_8_push_button = Qt.QPushButton("SenMode2")
+        self._tx_button_8_choices = {'Pressed': 8, 'Released': 0}
+        _tx_button_8_push_button.pressed.connect(lambda: self.set_tx_button_8(self._tx_button_8_choices['Pressed']))
+        _tx_button_8_push_button.released.connect(lambda: self.set_tx_button_8(self._tx_button_8_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_8_push_button, 7, 0, 1, 1)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(7,8)]
-        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,3)]
-        _tx_button_5_push_button = Qt.QPushButton("Command 5")
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_7_push_button = Qt.QPushButton("SenMode1")
+        self._tx_button_7_choices = {'Pressed': 7, 'Released': 0}
+        _tx_button_7_push_button.pressed.connect(lambda: self.set_tx_button_7(self._tx_button_7_choices['Pressed']))
+        _tx_button_7_push_button.released.connect(lambda: self.set_tx_button_7(self._tx_button_7_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_7_push_button, 6, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(6,7)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_6_push_button = Qt.QPushButton("FireBW09")
+        self._tx_button_6_choices = {'Pressed': 6, 'Released': 0}
+        _tx_button_6_push_button.pressed.connect(lambda: self.set_tx_button_6(self._tx_button_6_choices['Pressed']))
+        _tx_button_6_push_button.released.connect(lambda: self.set_tx_button_6(self._tx_button_6_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_6_push_button, 5, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(5,6)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_5_push_button = Qt.QPushButton("FireBW03")
         self._tx_button_5_choices = {'Pressed': 5, 'Released': 0}
         _tx_button_5_push_button.pressed.connect(lambda: self.set_tx_button_5(self._tx_button_5_choices['Pressed']))
         _tx_button_5_push_button.released.connect(lambda: self.set_tx_button_5(self._tx_button_5_choices['Released']))
         self.top_grid_layout.addWidget(_tx_button_5_push_button, 4, 0, 1, 1)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(4,5)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
-        _tx_button_4_push_button = Qt.QPushButton("Command 4")
+        _tx_button_4_push_button = Qt.QPushButton("FireBW02")
         self._tx_button_4_choices = {'Pressed': 4, 'Released': 0}
         _tx_button_4_push_button.pressed.connect(lambda: self.set_tx_button_4(self._tx_button_4_choices['Pressed']))
         _tx_button_4_push_button.released.connect(lambda: self.set_tx_button_4(self._tx_button_4_choices['Released']))
         self.top_grid_layout.addWidget(_tx_button_4_push_button, 3, 0, 1, 1)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(3,4)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
-        _tx_button_3_push_button = Qt.QPushButton("Command 3")
+        _tx_button_3_push_button = Qt.QPushButton("FireBW01")
         self._tx_button_3_choices = {'Pressed': 3, 'Released': 0}
         _tx_button_3_push_button.pressed.connect(lambda: self.set_tx_button_3(self._tx_button_3_choices['Pressed']))
         _tx_button_3_push_button.released.connect(lambda: self.set_tx_button_3(self._tx_button_3_choices['Released']))
         self.top_grid_layout.addWidget(_tx_button_3_push_button, 2, 0, 1, 1)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(2,3)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
-        _tx_button_2_push_button = Qt.QPushButton("Command 2")
+        _tx_button_2_push_button = Qt.QPushButton("ArmBW123")
         self._tx_button_2_choices = {'Pressed': 2, 'Released': 0}
         _tx_button_2_push_button.pressed.connect(lambda: self.set_tx_button_2(self._tx_button_2_choices['Pressed']))
         _tx_button_2_push_button.released.connect(lambda: self.set_tx_button_2(self._tx_button_2_choices['Released']))
         self.top_grid_layout.addWidget(_tx_button_2_push_button, 1, 0, 1, 1)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(1,2)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
-        _tx_button_1_push_button = Qt.QPushButton("Command 1")
+        _tx_button_18_push_button = Qt.QPushButton("RESET!!!")
+        self._tx_button_18_choices = {'Pressed': 18, 'Released': 0}
+        _tx_button_18_push_button.pressed.connect(lambda: self.set_tx_button_18(self._tx_button_18_choices['Pressed']))
+        _tx_button_18_push_button.released.connect(lambda: self.set_tx_button_18(self._tx_button_18_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_18_push_button, 17, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(17,18)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_17_push_button = Qt.QPushButton("SendACC3")
+        self._tx_button_17_choices = {'Pressed': 17, 'Released': 0}
+        _tx_button_17_push_button.pressed.connect(lambda: self.set_tx_button_17(self._tx_button_17_choices['Pressed']))
+        _tx_button_17_push_button.released.connect(lambda: self.set_tx_button_17(self._tx_button_17_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_17_push_button, 16, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(16,17)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_16_push_button = Qt.QPushButton("SendACC2")
+        self._tx_button_16_choices = {'Pressed': 16, 'Released': 0}
+        _tx_button_16_push_button.pressed.connect(lambda: self.set_tx_button_16(self._tx_button_16_choices['Pressed']))
+        _tx_button_16_push_button.released.connect(lambda: self.set_tx_button_16(self._tx_button_16_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_16_push_button, 15, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(15,16)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_15_push_button = Qt.QPushButton("SendACC1")
+        self._tx_button_15_choices = {'Pressed': 15, 'Released': 0}
+        _tx_button_15_push_button.pressed.connect(lambda: self.set_tx_button_15(self._tx_button_15_choices['Pressed']))
+        _tx_button_15_push_button.released.connect(lambda: self.set_tx_button_15(self._tx_button_15_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_15_push_button, 14, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(14,15)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_14_push_button = Qt.QPushButton("RadMode3")
+        self._tx_button_14_choices = {'Pressed': 14, 'Released': 0}
+        _tx_button_14_push_button.pressed.connect(lambda: self.set_tx_button_14(self._tx_button_14_choices['Pressed']))
+        _tx_button_14_push_button.released.connect(lambda: self.set_tx_button_14(self._tx_button_14_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_14_push_button, 13, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(13,14)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_13_push_button = Qt.QPushButton("RadMode2")
+        self._tx_button_13_choices = {'Pressed': 13, 'Released': 0}
+        _tx_button_13_push_button.pressed.connect(lambda: self.set_tx_button_13(self._tx_button_13_choices['Pressed']))
+        _tx_button_13_push_button.released.connect(lambda: self.set_tx_button_13(self._tx_button_13_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_13_push_button, 12, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(12,13)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_12_push_button = Qt.QPushButton("RadMode1")
+        self._tx_button_12_choices = {'Pressed': 12, 'Released': 0}
+        _tx_button_12_push_button.pressed.connect(lambda: self.set_tx_button_12(self._tx_button_12_choices['Pressed']))
+        _tx_button_12_push_button.released.connect(lambda: self.set_tx_button_12(self._tx_button_12_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_12_push_button, 11, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(11,12)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_11_push_button = Qt.QPushButton("SenMode5")
+        self._tx_button_11_choices = {'Pressed': 11, 'Released': 0}
+        _tx_button_11_push_button.pressed.connect(lambda: self.set_tx_button_11(self._tx_button_11_choices['Pressed']))
+        _tx_button_11_push_button.released.connect(lambda: self.set_tx_button_11(self._tx_button_11_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_11_push_button, 10, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(10,11)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_10_push_button = Qt.QPushButton("SenMode4")
+        self._tx_button_10_choices = {'Pressed': 10, 'Released': 0}
+        _tx_button_10_push_button.pressed.connect(lambda: self.set_tx_button_10(self._tx_button_10_choices['Pressed']))
+        _tx_button_10_push_button.released.connect(lambda: self.set_tx_button_10(self._tx_button_10_choices['Released']))
+        self.top_grid_layout.addWidget(_tx_button_10_push_button, 9, 0, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(9,10)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        _tx_button_1_push_button = Qt.QPushButton("PingACK!")
         self._tx_button_1_choices = {'Pressed': 1, 'Released': 0}
         _tx_button_1_push_button.pressed.connect(lambda: self.set_tx_button_1(self._tx_button_1_choices['Pressed']))
         _tx_button_1_push_button.released.connect(lambda: self.set_tx_button_1(self._tx_button_1_choices['Released']))
@@ -190,9 +294,9 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self._record_switch_callback = lambda i: Qt.QMetaObject.invokeMethod(_record_switch_check_box, "setChecked", Qt.Q_ARG("bool", self._record_switch_choices_inv[i]))
         self._record_switch_callback(self.record_switch)
         _record_switch_check_box.stateChanged.connect(lambda i: self.set_record_switch(self._record_switch_choices[bool(i)]))
-        self.top_grid_layout.addWidget(_record_switch_check_box, 8, 0, 1, 1)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(8,9)]
-        [self.top_grid_layout.setColumnStretch(c,1) for c in range(0,1)]
+        self.top_grid_layout.addWidget(_record_switch_check_box, 17, 1, 1, 1)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(17,18)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(1,2)]
         self.record = blocks.multiply_const_vcc((record_switch, ))
         self.rational_resampler_xxx_1 = filter.rational_resampler_ccc(
                 interpolation=int(samp_rate),
@@ -401,41 +505,87 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.settings.setValue("geometry", self.saveGeometry())
         event.accept()
 
+    def get_tx_button_9(self):
+        return self.tx_button_9
+
+    def set_tx_button_9(self, tx_button_9):
+        self.tx_button_9 = tx_button_9
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
+
+    def get_tx_button_8(self):
+        return self.tx_button_8
+
+    def set_tx_button_8(self, tx_button_8):
+        self.tx_button_8 = tx_button_8
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
+
+    def get_tx_button_7(self):
+        return self.tx_button_7
+
+    def set_tx_button_7(self, tx_button_7):
+        self.tx_button_7 = tx_button_7
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
+
+    def get_tx_button_6(self):
+        return self.tx_button_6
+
+    def set_tx_button_6(self, tx_button_6):
+        self.tx_button_6 = tx_button_6
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
+
     def get_tx_button_5(self):
         return self.tx_button_5
 
     def set_tx_button_5(self, tx_button_5):
         self.tx_button_5 = tx_button_5
-        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5))
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
 
     def get_tx_button_4(self):
         return self.tx_button_4
 
     def set_tx_button_4(self, tx_button_4):
         self.tx_button_4 = tx_button_4
-        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5))
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
 
     def get_tx_button_3(self):
         return self.tx_button_3
 
     def set_tx_button_3(self, tx_button_3):
         self.tx_button_3 = tx_button_3
-        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5))
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
 
     def get_tx_button_2(self):
         return self.tx_button_2
 
     def set_tx_button_2(self, tx_button_2):
         self.tx_button_2 = tx_button_2
-        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5))
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
+
+    def get_tx_button_11(self):
+        return self.tx_button_11
+
+    def set_tx_button_11(self, tx_button_11):
+        self.tx_button_11 = tx_button_11
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
+
+    def get_tx_button_10(self):
+        return self.tx_button_10
+
+    def set_tx_button_10(self, tx_button_10):
+        self.tx_button_10 = tx_button_10
+        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
 
     def get_tx_button_1(self):
         return self.tx_button_1
 
     def set_tx_button_1(self, tx_button_1):
         self.tx_button_1 = tx_button_1
-        self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5))
+	self.set_command_selection((self.tx_button_1+self.tx_button_2+self.tx_button_3+self.tx_button_4+self.tx_button_5+self.tx_button_6+self.tx_button_7+self.tx_button_8+self.tx_button_9+self.tx_button_10+self.tx_button_11))
 
+	if tx_button_1 == 1:
+		self.TX_Commands_0.blocks_file_source_1.seek(long(0),int(0))
+		time.sleep(3)
+        
     def get_samp_rate(self):
         return self.samp_rate
 
@@ -487,6 +637,48 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
     def set_tx_if_gain(self, tx_if_gain):
         self.tx_if_gain = tx_if_gain
+
+    def get_tx_button_18(self):
+        return self.tx_button_18
+
+    def set_tx_button_18(self, tx_button_18):
+        self.tx_button_18 = tx_button_18
+
+    def get_tx_button_17(self):
+        return self.tx_button_17
+
+    def set_tx_button_17(self, tx_button_17):
+        self.tx_button_17 = tx_button_17
+
+    def get_tx_button_16(self):
+        return self.tx_button_16
+
+    def set_tx_button_16(self, tx_button_16):
+        self.tx_button_16 = tx_button_16
+
+    def get_tx_button_15(self):
+        return self.tx_button_15
+
+    def set_tx_button_15(self, tx_button_15):
+        self.tx_button_15 = tx_button_15
+
+    def get_tx_button_14(self):
+        return self.tx_button_14
+
+    def set_tx_button_14(self, tx_button_14):
+        self.tx_button_14 = tx_button_14
+
+    def get_tx_button_13(self):
+        return self.tx_button_13
+
+    def set_tx_button_13(self, tx_button_13):
+        self.tx_button_13 = tx_button_13
+
+    def get_tx_button_12(self):
+        return self.tx_button_12
+
+    def set_tx_button_12(self, tx_button_12):
+        self.tx_button_12 = tx_button_12
 
     def get_samp_per_sym(self):
         return self.samp_per_sym

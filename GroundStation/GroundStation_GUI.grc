@@ -93,7 +93,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(848, 532)</value>
+      <value>(928, 476)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -174,7 +174,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(192, 540)</value>
+      <value>(176, 1132)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -186,7 +186,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>(tx_button_1+tx_button_2+tx_button_3+tx_button_4+tx_button_5)</value>
+      <value>(tx_button_1+tx_button_2+tx_button_3+tx_button_4+tx_button_5+tx_button_6+tx_button_7+tx_button_8+tx_button_9+tx_button_10+tx_button_11)</value>
     </param>
   </block>
   <block>
@@ -228,7 +228,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(568, 892)</value>
+      <value>(536, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -282,7 +282,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(768, 892)</value>
+      <value>(736, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -371,11 +371,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(0, 1028)</value>
+      <value>(512, 1108)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(8,0,1,1)</value>
+      <value>(17,1,1,1)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -414,11 +414,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 1020)</value>
+      <value>(680, 1100)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(8,3,1,3)</value>
+      <value>(17,3,1,3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -477,11 +477,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 908)</value>
+      <value>(680, 988)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(7,3,1,3)</value>
+      <value>(14,3,3,3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -540,11 +540,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(168, 788)</value>
+      <value>(680, 868)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(6,3,1,3)</value>
+      <value>(11,3,3,3)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -700,11 +700,434 @@
     </param>
     <param>
       <key>label</key>
-      <value>"Command 1"</value>
+      <value>"PingACK!"</value>
     </param>
     <param>
       <key>pressed</key>
       <value>1</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 1236)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(9,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_10</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SenMode4"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>10</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 1348)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(10,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_11</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SenMode5"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>11</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 1468)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(11,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_12</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"RadMode1"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>12</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 1236)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(12,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_13</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"RadMode2"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>13</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 1356)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(13,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_14</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"RadMode3"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>14</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(168, 1476)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(14,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_15</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SendACC1"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>15</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(336, 1236)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(15,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_16</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SendACC2"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>16</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(336, 1356)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(16,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_17</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SendACC3"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>17</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(336, 1476)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(17,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_18</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"RESET!!!"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>18</value>
     </param>
     <param>
       <key>released</key>
@@ -747,7 +1170,7 @@
     </param>
     <param>
       <key>label</key>
-      <value>"Command 2"</value>
+      <value>"ArmBW123"</value>
     </param>
     <param>
       <key>pressed</key>
@@ -794,7 +1217,7 @@
     </param>
     <param>
       <key>label</key>
-      <value>"Command 3"</value>
+      <value>"FireBW01"</value>
     </param>
     <param>
       <key>pressed</key>
@@ -841,7 +1264,7 @@
     </param>
     <param>
       <key>label</key>
-      <value>"Command 4"</value>
+      <value>"FireBW02"</value>
     </param>
     <param>
       <key>pressed</key>
@@ -888,11 +1311,199 @@
     </param>
     <param>
       <key>label</key>
-      <value>"Command 5"</value>
+      <value>"FireBW03"</value>
     </param>
     <param>
       <key>pressed</key>
       <value>5</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 756)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(5,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_6</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"FireBW09"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>6</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 876)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(6,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_7</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SenMode1"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>7</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 996)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(7,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_8</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SenMode2"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>8</value>
+    </param>
+    <param>
+      <key>released</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>type</key>
+      <value>int</value>
+    </param>
+  </block>
+  <block>
+    <key>variable_qtgui_push_button</key>
+    <param>
+      <key>comment</key>
+      <value></value>
+    </param>
+    <param>
+      <key>value</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>_enabled</key>
+      <value>True</value>
+    </param>
+    <param>
+      <key>_coordinate</key>
+      <value>(16, 1116)</value>
+    </param>
+    <param>
+      <key>gui_hint</key>
+      <value>(8,0,1,1)</value>
+    </param>
+    <param>
+      <key>_rotation</key>
+      <value>0</value>
+    </param>
+    <param>
+      <key>id</key>
+      <value>tx_button_9</value>
+    </param>
+    <param>
+      <key>label</key>
+      <value>"SenMode3"</value>
+    </param>
+    <param>
+      <key>pressed</key>
+      <value>9</value>
     </param>
     <param>
       <key>released</key>
@@ -919,11 +1530,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 908)</value>
+      <value>(544, 988)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(7,0,1,3)</value>
+      <value>(14,1,3,2)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -978,7 +1589,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(672, 892)</value>
+      <value>(640, 668)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -990,7 +1601,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>2e6</value>
+      <value>4.8e6</value>
     </param>
   </block>
   <block>
@@ -1001,7 +1612,7 @@
     </param>
     <param>
       <key>value</key>
-      <value>14</value>
+      <value>0</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -1009,11 +1620,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(32, 788)</value>
+      <value>(544, 868)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(6,0,1,3)</value>
+      <value>(11,1,3,2)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1076,7 +1687,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(560, 828)</value>
+      <value>(536, 588)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1202,53 +1813,6 @@
     </param>
   </block>
   <block>
-    <key>audio_sink</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>device_name</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(904, 812)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>audio_sink_0</value>
-    </param>
-    <param>
-      <key>num_inputs</key>
-      <value>1</value>
-    </param>
-    <param>
-      <key>ok_to_block</key>
-      <value>True</value>
-    </param>
-    <param>
-      <key>samp_rate</key>
-      <value>int(file_rate)</value>
-    </param>
-  </block>
-  <block>
     <key>blks2_selector</key>
     <param>
       <key>alias</key>
@@ -1268,7 +1832,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(840, 600)</value>
+      <value>(920, 544)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -1305,49 +1869,6 @@
     <param>
       <key>type</key>
       <value>complex</value>
-    </param>
-    <param>
-      <key>vlen</key>
-      <value>1</value>
-    </param>
-  </block>
-  <block>
-    <key>blocks_complex_to_float</key>
-    <param>
-      <key>alias</key>
-      <value></value>
-    </param>
-    <param>
-      <key>comment</key>
-      <value></value>
-    </param>
-    <param>
-      <key>affinity</key>
-      <value></value>
-    </param>
-    <param>
-      <key>_enabled</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>_coordinate</key>
-      <value>(752, 816)</value>
-    </param>
-    <param>
-      <key>_rotation</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>id</key>
-      <value>blocks_complex_to_float_0</value>
-    </param>
-    <param>
-      <key>maxoutbuf</key>
-      <value>0</value>
-    </param>
-    <param>
-      <key>minoutbuf</key>
-      <value>0</value>
     </param>
     <param>
       <key>vlen</key>
@@ -2588,7 +3109,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(1184, 684)</value>
+      <value>(1160, 524)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5083,7 +5604,7 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(752, 724)</value>
+      <value>(720, 564)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5240,11 +5761,11 @@
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(304, 924)</value>
+      <value>(816, 1004)</value>
     </param>
     <param>
       <key>gui_hint</key>
-      <value>(0,1,5,5)</value>
+      <value>(0,1,10,5)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -5341,12 +5862,6 @@
   </block>
   <connection>
     <source_block_id>TX_Commands_0</source_block_id>
-    <sink_block_id>blocks_complex_to_float_0</sink_block_id>
-    <source_key>0</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>TX_Commands_0</source_block_id>
     <sink_block_id>rational_resampler_xxx_0</sink_block_id>
     <source_key>0</source_key>
     <sink_key>0</sink_key>
@@ -5385,12 +5900,6 @@
     <source_block_id>blks2_selector_0</source_block_id>
     <sink_block_id>osmosdr_sink_0</sink_block_id>
     <source_key>1</source_key>
-    <sink_key>0</sink_key>
-  </connection>
-  <connection>
-    <source_block_id>blocks_complex_to_float_0</source_block_id>
-    <sink_block_id>audio_sink_0</sink_block_id>
-    <source_key>0</source_key>
     <sink_key>0</sink_key>
   </connection>
   <connection>
