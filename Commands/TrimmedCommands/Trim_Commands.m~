@@ -1,31 +1,42 @@
 % Separates RawCommands.iq into individual command IQ files
 
-filename = 'PingACK!_160ksps_437505kHz_30kOffset_filtered.iq';
-samp_rate = 160e3;      %Recording Sample Rate
-len = 0.75;              %Desired length of recording
-start = 4.6e5;           %Index for start of command
 
+command_name = 'ArmBW123';
+arg = '_160ksps_437505kHz_30kOffset_filtered.iq'
+samp_rate = 160e3;      %Recording Sample Rate
+len = 3;              %Desired length of recording
+start = 5.98e5;           %Index for start of command
+finish = 6.76e5                   %Index for end of command
+
+filename = strcat(command_name,arg);
 samps = ceil(samp_rate*len); %Number of samples in output file
 
 %% Load Command From File
 dat = read_complex_binary(filename);   %Read data from file
 
+
 %% Plot Raw Command
 figure(1);
 plot(1:length(dat),abs(dat));   %Plot entire file
 
+
 %% Trim Command
-command = dat(start:start+samps);
+command_start = ceil(len*samp_rate*0.75);
+command_finish = command_start+(finish-start);
+command = zeros(1,len*samp_rate);
+command(command_start:command_finish) = dat(start:finish);
+
 
 %% Increase Gain
-gain = 1/max(abs(command))*1
+gain = 1/max(abs(command))*1;
+command = command*gain;
 
 
 %% Plot Final Command
 figure(2);
-plot(1:length(command),abs(command));   %Plot entire file
+plot((1:length(command))/samp_rate,abs(command));   %Plot entire file
 
-
-
-
-
+%% Save Command
+name = strcat('trimmed_',filename);
+name = strcat(command_name,'_160ksps_437505kHz_30kOffset_',num(len,'s.iq')
+write_complex_binary(command,name);

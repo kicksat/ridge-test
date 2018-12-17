@@ -649,15 +649,15 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>1</value>
+      <value>0</value>
     </param>
     <param>
       <key>file</key>
-      <value>/home/tane/Documents/RExLab/ridge-test/Commands/RawRecordings/PingACK!_160ksps_437505kHz_30kOffset_raw.iq</value>
+      <value>/home/tane/Documents/RExLab/ridge-test/Commands/RawRecordings/RESET!!!_160ksps_437505kHz_30kOffset_raw.iq</value>
     </param>
     <param>
       <key>_coordinate</key>
-      <value>(936, 556)</value>
+      <value>(952, 460)</value>
     </param>
     <param>
       <key>_rotation</key>
@@ -2552,7 +2552,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>fftsize</key>
@@ -3062,7 +3062,7 @@
     </param>
     <param>
       <key>_enabled</key>
-      <value>True</value>
+      <value>0</value>
     </param>
     <param>
       <key>fftsize</key>
