@@ -511,6 +511,7 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_squelch_detect(self, squelch_detect):
         self.squelch_detect = squelch_detect
 	if squelch_detect != 0:
+		time.sleep(1)
 		self.blocks_file_source_0.seek(long(0),int(0))
 		self.set_TxRxSwitch(1)
 		time.sleep(4)
