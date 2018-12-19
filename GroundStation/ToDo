@@ -1,0 +1,10 @@
+amp_controller.py
+	wrap in gnu radio block
+	incorporate into flowgraph using selector signal
+	put arduino serial port as gnuradio variable
+	move arduino code to repo
+
+incorporate ax.25 decoding
+
+switch to lime sdr/usrp
+
