@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Groundstation Gui
-# Generated: Mon Dec 17 16:59:45 2018
+# Generated: Sat Feb  9 21:02:10 2019
 ##################################################
 
 from distutils.version import StrictVersion
@@ -20,7 +20,6 @@ if __name__ == '__main__':
 
 from PyQt5 import Qt
 from PyQt5 import Qt, QtCore
-from PyQt5.QtCore import QObject, pyqtSlot
 from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import eng_notation
@@ -32,15 +31,15 @@ from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from grc_gnuradio import blks2 as grc_blks2
 from optparse import OptionParser
+import limesdr
 import math
-import osmosdr
 import sip
 import sys
 import threading
 import time
 from gnuradio import qtgui
 
-import amp_controller	#Controls Arduino Amp Controller
+import PTT_controller as PTT	#Controls Arduino Amp Controller
 
 
 class GroundStation_GUI(gr.top_block, Qt.QWidget):
@@ -97,7 +96,6 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.freq_adj = freq_adj = -7000
         self.freq = freq = 437.505e6
         self.file_rate = file_rate = 160e3
-        self.command_file = command_file = '/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/PingACK!_160ksps_437505kHz_30kOffset_3s.iq'
         self.channel_trans = channel_trans = (channel_spacing*0.5)
         self.TxRxSwitch = TxRxSwitch = TxRx
 
@@ -138,18 +136,8 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.top_grid_layout.addWidget(self.sig_tabs, 0, 1, 10, 5)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(0,10)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(1,6)]
-        self._rx_rf_gain_range = Range(0, 14, 14, 14, 200)
-        self._rx_rf_gain_win = RangeWidget(self._rx_rf_gain_range, self.set_rx_rf_gain, "rx_rf_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_rf_gain_win, 11, 3, 3, 3)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(11,14)]
-        [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
-        self._rx_if_gain_range = Range(0, 40, 8, 24, 200)
-        self._rx_if_gain_win = RangeWidget(self._rx_if_gain_range, self.set_rx_if_gain, "rx_if_gain", "counter_slider", float)
-        self.top_grid_layout.addWidget(self._rx_if_gain_win, 14, 3, 3, 3)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(14,17)]
-        [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
         self._rx_bb_gain_range = Range(0, 62, 2, 20, 200)
-        self._rx_bb_gain_win = RangeWidget(self._rx_bb_gain_range, self.set_rx_bb_gain, "rx_bb_gain", "counter_slider", float)
+        self._rx_bb_gain_win = RangeWidget(self._rx_bb_gain_range, self.set_rx_bb_gain, "rx_bb_gain", "counter_slider", int)
         self.top_grid_layout.addWidget(self._rx_bb_gain_win, 17, 3, 1, 3)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(17,18)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
@@ -157,20 +145,6 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self._freq_adj_win = RangeWidget(self._freq_adj_range, self.set_freq_adj, 'Frequency Adjust', "counter_slider", float)
         self.top_grid_layout.addWidget(self._freq_adj_win, 4, 6, 1, 5)
         [self.top_grid_layout.setRowStretch(r,1) for r in range(4,5)]
-        [self.top_grid_layout.setColumnStretch(c,1) for c in range(6,11)]
-        self._command_file_options = ['/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/PingACK!_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/ArmBW123_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW01_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW02_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW03_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/FireBW09_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode4_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SenMode5_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RadMode3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC1_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC2_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/SendACC3_160ksps_437505kHz_30kOffset_3s.iq','/home/tane/Documents/RExLab/ridge-test/Commands/TrimmedCommands/RESET!!!_160ksps_437505kHz_30kOffset_3s.iq']
-        self._command_file_labels = ['PingACK!','ArmBW123','FireBW01','FireBW02','FireBW03','FireBW09','SenMode1','SenMode2','SenMode3','SenMode4','SenMode5','RadMode1','RadMode2','RadMode3','SendACC1','SendACC2','SendACC3','RESET!!!']
-        self._command_file_tool_bar = Qt.QToolBar(self)
-        self._command_file_tool_bar.addWidget(Qt.QLabel('Commands'+": "))
-        self._command_file_combo_box = Qt.QComboBox()
-        self._command_file_tool_bar.addWidget(self._command_file_combo_box)
-        for label in self._command_file_labels: self._command_file_combo_box.addItem(label)
-        self._command_file_callback = lambda i: Qt.QMetaObject.invokeMethod(self._command_file_combo_box, "setCurrentIndex", Qt.Q_ARG("int", self._command_file_options.index(i)))
-        self._command_file_callback(self.command_file)
-        self._command_file_combo_box.currentIndexChanged.connect(
-        	lambda i: self.set_command_file(self._command_file_options[i]))
-        self.top_grid_layout.addWidget(self._command_file_tool_bar, 0, 6, 2, 5)
-        [self.top_grid_layout.setRowStretch(r,1) for r in range(0,2)]
         [self.top_grid_layout.setColumnStretch(c,1) for c in range(6,11)]
         self._tx_rf_gain_range = Range(0, 14, 14, 0, 200)
         self._tx_rf_gain_win = RangeWidget(self._tx_rf_gain_range, self.set_tx_rf_gain, "tx_rf_gain", "counter_slider", float)
@@ -195,6 +169,16 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         _squelch_detect_thread.daemon = True
         _squelch_detect_thread.start()
 
+        self._rx_rf_gain_range = Range(0, 14, 14, 14, 200)
+        self._rx_rf_gain_win = RangeWidget(self._rx_rf_gain_range, self.set_rx_rf_gain, "rx_rf_gain", "counter_slider", float)
+        self.top_grid_layout.addWidget(self._rx_rf_gain_win, 11, 3, 3, 3)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(11,14)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
+        self._rx_if_gain_range = Range(0, 40, 8, 24, 200)
+        self._rx_if_gain_win = RangeWidget(self._rx_if_gain_range, self.set_rx_if_gain, "rx_if_gain", "counter_slider", float)
+        self.top_grid_layout.addWidget(self._rx_if_gain_win, 14, 3, 3, 3)
+        [self.top_grid_layout.setRowStretch(r,1) for r in range(14,17)]
+        [self.top_grid_layout.setColumnStretch(c,1) for c in range(3,6)]
         _record_switch_check_box = Qt.QCheckBox('Record Raw Signal')
         self._record_switch_choices = {True: 1, False: 0}
         self._record_switch_choices_inv = dict((v,k) for k,v in self._record_switch_choices.iteritems())
@@ -351,36 +335,73 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
         self._qtgui_freq_sink_x_0_win = sip.wrapinstance(self.qtgui_freq_sink_x_0.pyqwidget(), Qt.QWidget)
         self.sig_tabs_layout_0.addWidget(self._qtgui_freq_sink_x_0_win)
-        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + "soapy=0,driver=hackrf" )
-        self.osmosdr_source_0.set_sample_rate(rx_samp_rate)
-        self.osmosdr_source_0.set_center_freq(freq+freq_offset, 0)
-        self.osmosdr_source_0.set_freq_corr(0, 0)
-        self.osmosdr_source_0.set_dc_offset_mode(0, 0)
-        self.osmosdr_source_0.set_iq_balance_mode(0, 0)
-        self.osmosdr_source_0.set_gain_mode(False, 0)
-        self.osmosdr_source_0.set_gain(rx_rf_gain, 0)
-        self.osmosdr_source_0.set_if_gain(rx_if_gain, 0)
-        self.osmosdr_source_0.set_bb_gain(rx_bb_gain, 0)
-        self.osmosdr_source_0.set_antenna('', 0)
-        self.osmosdr_source_0.set_bandwidth(0, 0)
-
-        self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + "soapy=0,driver=hackrf" )
-        self.osmosdr_sink_0.set_sample_rate(tx_rate)
-        self.osmosdr_sink_0.set_center_freq(freq+freq_offset, 0)
-        self.osmosdr_sink_0.set_freq_corr(0, 0)
-        self.osmosdr_sink_0.set_gain(10, 0)
-        self.osmosdr_sink_0.set_if_gain(1, 0)
-        self.osmosdr_sink_0.set_bb_gain(20, 0)
-        self.osmosdr_sink_0.set_antenna('', 0)
-        self.osmosdr_sink_0.set_bandwidth(0, 0)
-
+        self.limesdr_source_0 = limesdr.source('1D42562394D4C1',
+        			 1,
+        			 1,
+        			 0,
+        			 0,
+        			 '',
+        			 freq+freq_offset,
+        			 rx_samp_rate,
+        			 0,
+        			 0,
+        			 10e6,
+        			 0,
+        			 10e6,
+        			 3,
+        			 2,
+        			 2,
+        			 1,
+        			 5e6,
+        			 1,
+        			 5e6,
+        			 0,
+        			 0,
+        			 0,
+        			 0,
+        			 rx_bb_gain,
+        			 60,
+        			 0,
+        			 0,
+        			 0,
+        			 0)
+        self.limesdr_sink_0 = limesdr.sink('1D42562394D4C1',
+        		       1,
+        		       1,
+        		       0,
+        		       0,
+        		       '',
+        		       freq+freq_offset,
+        		       tx_rate,
+        		       0,
+        		       0,
+        		       10e6,
+        		       0,
+        		       10e6,
+        		       1,
+        		       1,
+        		       1,
+        		       1,
+        		       5e6,
+        		       1,
+        		       5e6,
+        		       0,
+        		       0,
+        		       0,
+        		       0,
+        		       30,
+        		       30,
+        		       0,
+        		       0,
+        		       0,
+        		       0)
         self.freq_xlating_fir_filter_xxx_0 = filter.freq_xlating_fir_filter_ccc(1, (firdes.low_pass(1,  samp_rate, channel_spacing, channel_trans, firdes.WIN_BLACKMAN, 6.76)), -freq_offset, samp_rate)
         self.dc_blocker_xx_0 = filter.dc_blocker_cc(32, True)
         self.blocks_multiply_xx_0 = blocks.multiply_vcc(1)
         self.blocks_moving_average_xx_0 = blocks.moving_average_ff(313/2, 1, 4000)
         self.blocks_float_to_int_0 = blocks.float_to_int(1, 1)
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, command_file, True)
-        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/tane/Documents/RExLab/ridge-test/GroundStation/Recordings/raw.dat', False)
+        self.blocks_file_source_0_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/rexlab/ridge-test/Commands/FilteredRecordings/ArmBW123_160ksps_437505kHz_30kOffset_filtered.iq', True)
+        self.blocks_file_sink_1 = blocks.file_sink(gr.sizeof_gr_complex*1, '/home/rexlab/ridge-test/GroundStation/Recordings/raw.dat', False)
         self.blocks_file_sink_1.set_unbuffered(False)
         self.blocks_complex_to_mag_0 = blocks.complex_to_mag(1)
         self.blocks_and_const_xx_0 = blocks.and_const_ii(tx_arm)
@@ -417,7 +438,7 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.connect((self.blks2_selector_0, 0), (self.record, 0))
         self.connect((self.blocks_and_const_xx_0, 0), (self.squelch_probe, 0))
         self.connect((self.blocks_complex_to_mag_0, 0), (self.blocks_float_to_int_0, 0))
-        self.connect((self.blocks_file_source_0, 0), (self.blks2_selector_0, 1))
+        self.connect((self.blocks_file_source_0_0, 0), (self.blks2_selector_0, 1))
         self.connect((self.blocks_float_to_int_0, 0), (self.blocks_and_const_xx_0, 0))
         self.connect((self.blocks_moving_average_xx_0, 0), (self.qtgui_time_sink_x_0, 0))
         self.connect((self.blocks_multiply_xx_0, 0), (self.freq_xlating_fir_filter_xxx_0, 0))
@@ -426,8 +447,8 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.connect((self.dc_blocker_xx_0, 0), (self.rational_resampler_xxx_1, 0))
         self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.analog_quadrature_demod_cf_0, 0))
         self.connect((self.freq_xlating_fir_filter_xxx_0, 0), (self.qtgui_freq_sink_x_0_0, 0))
-        self.connect((self.osmosdr_source_0, 0), (self.blks2_selector_0, 0))
-        self.connect((self.rational_resampler_xxx_0, 0), (self.osmosdr_sink_0, 0))
+        self.connect((self.limesdr_source_0, 0), (self.blks2_selector_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.limesdr_sink_0, 0))
         self.connect((self.rational_resampler_xxx_1, 0), (self.blocks_multiply_xx_0, 0))
         self.connect((self.record, 0), (self.analog_pwr_squelch_xx_0, 0))
 
@@ -481,7 +502,6 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
 
     def set_tx_rate(self, tx_rate):
         self.tx_rate = tx_rate
-        self.osmosdr_sink_0.set_sample_rate(self.tx_rate)
 
     def get_tx_if_gain(self):
         return self.tx_if_gain
@@ -511,12 +531,12 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_squelch_detect(self, squelch_detect):
         self.squelch_detect = squelch_detect
 	if squelch_detect != 0:
+		time.sleep(1)
 		self.blocks_file_source_0.seek(long(0),int(0))
 		self.set_TxRxSwitch(1)
 		time.sleep(4)
 		self.set_TxRxSwitch(0)
 		time.sleep(1)
-
 
     def get_samp_per_sym(self):
         return self.samp_per_sym
@@ -530,28 +550,25 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_rx_samp_rate(self, rx_samp_rate):
         self.rx_samp_rate = rx_samp_rate
         self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.rx_samp_rate)
-        self.osmosdr_source_0.set_sample_rate(self.rx_samp_rate)
 
     def get_rx_rf_gain(self):
         return self.rx_rf_gain
 
     def set_rx_rf_gain(self, rx_rf_gain):
         self.rx_rf_gain = rx_rf_gain
-        self.osmosdr_source_0.set_gain(self.rx_rf_gain, 0)
 
     def get_rx_if_gain(self):
         return self.rx_if_gain
 
     def set_rx_if_gain(self, rx_if_gain):
         self.rx_if_gain = rx_if_gain
-        self.osmosdr_source_0.set_if_gain(self.rx_if_gain, 0)
 
     def get_rx_bb_gain(self):
         return self.rx_bb_gain
 
     def set_rx_bb_gain(self, rx_bb_gain):
         self.rx_bb_gain = rx_bb_gain
-        self.osmosdr_source_0.set_bb_gain(self.rx_bb_gain, 0)
+        self.limesdr_source_0.set_gain(self.rx_bb_gain,0)
 
     def get_record_switch(self):
         return self.record_switch
@@ -574,8 +591,8 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
     def set_freq_offset(self, freq_offset):
         self.freq_offset = freq_offset
         self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.rx_samp_rate)
-        self.osmosdr_source_0.set_center_freq(self.freq+self.freq_offset, 0)
-        self.osmosdr_sink_0.set_center_freq(self.freq+self.freq_offset, 0)
+        self.limesdr_source_0.set_rf_freq(self.freq+self.freq_offset)
+        self.limesdr_sink_0.set_rf_freq(self.freq+self.freq_offset)
         self.freq_xlating_fir_filter_xxx_0.set_center_freq(-self.freq_offset)
 
     def get_freq_adj(self):
@@ -592,22 +609,14 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.freq = freq
         self.qtgui_freq_sink_x_0_0.set_frequency_range(self.freq, self.samp_rate)
         self.qtgui_freq_sink_x_0.set_frequency_range(self.freq+self.freq_offset, self.rx_samp_rate)
-        self.osmosdr_source_0.set_center_freq(self.freq+self.freq_offset, 0)
-        self.osmosdr_sink_0.set_center_freq(self.freq+self.freq_offset, 0)
+        self.limesdr_source_0.set_rf_freq(self.freq+self.freq_offset)
+        self.limesdr_sink_0.set_rf_freq(self.freq+self.freq_offset)
 
     def get_file_rate(self):
         return self.file_rate
 
     def set_file_rate(self, file_rate):
         self.file_rate = file_rate
-
-    def get_command_file(self):
-        return self.command_file
-
-    def set_command_file(self, command_file):
-        self.command_file = command_file
-        self._command_file_callback(self.command_file)
-        self.blocks_file_source_0.open(self.command_file, True)
 
     def get_channel_trans(self):
         return self.channel_trans
@@ -624,9 +633,9 @@ class GroundStation_GUI(gr.top_block, Qt.QWidget):
         self.blks2_selector_0.set_input_index(int(self.TxRxSwitch))
         self.blks2_selector_0.set_output_index(int(self.TxRxSwitch))
 	if TxRxSwitch == 1:
-		amp_controller.tx()
+		PTT.tx()
 	else:
-		amp_controller.rx()
+		PTT.rx()
 
 
 def main(top_block_cls=GroundStation_GUI, options=None):
