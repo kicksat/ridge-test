@@ -3,8 +3,10 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Top Block
-# Generated: Tue Nov  6 14:27:44 2018
+# Generated: Sat Feb  9 21:16:40 2019
 ##################################################
+
+from distutils.version import StrictVersion
 
 if __name__ == '__main__':
     import ctypes
@@ -16,8 +18,8 @@ if __name__ == '__main__':
         except:
             print "Warning: failed to XInitThreads()"
 
-from PyQt4 import Qt
-from gnuradio import blocks
+from PyQt5 import Qt, QtCore
+from gnuradio import analog
 from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import gr
@@ -25,9 +27,9 @@ from gnuradio.eng_option import eng_option
 from gnuradio.filter import firdes
 from gnuradio.qtgui import Range, RangeWidget
 from optparse import OptionParser
-import osmosdr
+import limesdr
 import sys
-import time
+from gnuradio import qtgui
 
 
 class top_block(gr.top_block, Qt.QWidget):
@@ -36,6 +38,7 @@ class top_block(gr.top_block, Qt.QWidget):
         gr.top_block.__init__(self, "Top Block")
         Qt.QWidget.__init__(self)
         self.setWindowTitle("Top Block")
+        qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
         except:
@@ -53,47 +56,77 @@ class top_block(gr.top_block, Qt.QWidget):
         self.top_layout.addLayout(self.top_grid_layout)
 
         self.settings = Qt.QSettings("GNU Radio", "top_block")
-        self.restoreGeometry(self.settings.value("geometry").toByteArray())
+
+        if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
+            self.restoreGeometry(self.settings.value("geometry").toByteArray())
+        else:
+            self.restoreGeometry(self.settings.value("geometry", type=QtCore.QByteArray))
 
         ##################################################
         # Variables
         ##################################################
-        self.interp = interp = 48
-        self.input_rate = input_rate = 100e3
-        self.variable_qtgui_range_0 = variable_qtgui_range_0 = 0
+        self.interp = interp = 30
+        self.input_rate = input_rate = 160e3
+        self.tx_gain = tx_gain = 0
         self.samp_rate = samp_rate = interp*input_rate
 
         ##################################################
         # Blocks
         ##################################################
-        self._variable_qtgui_range_0_range = Range(0, 47, 1, 0, 200)
-        self._variable_qtgui_range_0_win = RangeWidget(self._variable_qtgui_range_0_range, self.set_variable_qtgui_range_0, 'Output Gain', "counter_slider", int)
-        self.top_layout.addWidget(self._variable_qtgui_range_0_win)
+        self._tx_gain_range = Range(0, 60, 1, 0, 200)
+        self._tx_gain_win = RangeWidget(self._tx_gain_range, self.set_tx_gain, 'Output Gain', "counter_slider", int)
+        self.top_layout.addWidget(self._tx_gain_win)
         self.rational_resampler_xxx_0 = filter.rational_resampler_ccc(
                 interpolation=interp,
                 decimation=1,
                 taps=None,
                 fractional_bw=None,
         )
-        self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + 'hackrf=995d5f' )
-        self.osmosdr_sink_0.set_sample_rate(samp_rate)
-        self.osmosdr_sink_0.set_center_freq(437.502e6, 0)
-        self.osmosdr_sink_0.set_freq_corr(0, 0)
-        self.osmosdr_sink_0.set_gain(14, 0)
-        self.osmosdr_sink_0.set_if_gain(variable_qtgui_range_0, 0)
-        self.osmosdr_sink_0.set_bb_gain(0, 0)
-        self.osmosdr_sink_0.set_antenna('', 0)
-        self.osmosdr_sink_0.set_bandwidth(0, 0)
-          
-        self.blocks_multiply_const_vxx_0 = blocks.multiply_const_vcc((1, ))
-        self.blocks_file_source_0 = blocks.file_source(gr.sizeof_gr_complex*1, '/home/zacman/RawPing512.iq', True)
+        self.limesdr_sink_0 = limesdr.sink('1D42562394D4C1',
+        		       1,
+        		       1,
+        		       0,
+        		       0,
+        		       '',
+        		       433.25e6,
+        		       samp_rate,
+        		       0,
+        		       0,
+        		       10e6,
+        		       0,
+        		       10e6,
+        		       1,
+        		       1,
+        		       1,
+        		       1,
+        		       5e6,
+        		       1,
+        		       5e6,
+        		       0,
+        		       0,
+        		       0,
+        		       0,
+        		       tx_gain,
+        		       30,
+        		       0,
+        		       0,
+        		       0,
+        		       0)
+        self.analog_sig_source_x_0 = analog.sig_source_f(160000, analog.GR_COS_WAVE, 440, 1, 0)
+        self.analog_nbfm_tx_0 = analog.nbfm_tx(
+        	audio_rate=160000,
+        	quad_rate=160000,
+        	tau=75e-6,
+        	max_dev=5e3,
+        	fh=-1.0,
+                )
 
         ##################################################
         # Connections
         ##################################################
-        self.connect((self.blocks_file_source_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
-        self.connect((self.blocks_multiply_const_vxx_0, 0), (self.rational_resampler_xxx_0, 0))    
-        self.connect((self.rational_resampler_xxx_0, 0), (self.osmosdr_sink_0, 0))    
+        self.connect((self.analog_nbfm_tx_0, 0), (self.rational_resampler_xxx_0, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.analog_nbfm_tx_0, 0))
+        self.connect((self.rational_resampler_xxx_0, 0), (self.limesdr_sink_0, 0))
 
     def closeEvent(self, event):
         self.settings = Qt.QSettings("GNU Radio", "top_block")
@@ -114,25 +147,23 @@ class top_block(gr.top_block, Qt.QWidget):
         self.input_rate = input_rate
         self.set_samp_rate(self.interp*self.input_rate)
 
-    def get_variable_qtgui_range_0(self):
-        return self.variable_qtgui_range_0
+    def get_tx_gain(self):
+        return self.tx_gain
 
-    def set_variable_qtgui_range_0(self, variable_qtgui_range_0):
-        self.variable_qtgui_range_0 = variable_qtgui_range_0
-        self.osmosdr_sink_0.set_if_gain(self.variable_qtgui_range_0, 0)
+    def set_tx_gain(self, tx_gain):
+        self.tx_gain = tx_gain
+        self.limesdr_sink_0.set_gain(self.tx_gain,0)
 
     def get_samp_rate(self):
         return self.samp_rate
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.osmosdr_sink_0.set_sample_rate(self.samp_rate)
 
 
 def main(top_block_cls=top_block, options=None):
 
-    from distutils.version import StrictVersion
-    if StrictVersion(Qt.qVersion()) >= StrictVersion("4.5.0"):
+    if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')
         Qt.QApplication.setGraphicsSystem(style)
     qapp = Qt.QApplication(sys.argv)
@@ -144,7 +175,7 @@ def main(top_block_cls=top_block, options=None):
     def quitting():
         tb.stop()
         tb.wait()
-    qapp.connect(qapp, Qt.SIGNAL("aboutToQuit()"), quitting)
+    qapp.aboutToQuit.connect(quitting)
     qapp.exec_()
 
 
